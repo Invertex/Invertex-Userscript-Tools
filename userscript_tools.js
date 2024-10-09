@@ -23,11 +23,11 @@ StringBuilder.prototype.toString = function ()
 }
 
 
-function download(url, filename)
+function download(url, filename, timeout = -1)
 {
      return new Promise((resolve, reject) =>
     {
-         GM_download(
+         const dl = GM_download(
              {
                  name: filename,
                  url: url,
@@ -35,6 +35,13 @@ function download(url, filename)
                  onerror: reject,
                  ontimeout: reject
              });
+        if(timeout >= 0)
+        {
+              window.setTimeout(()=> {
+                dl?.abort();
+                reject()
+            }, timeout);
+        }
     });
 }
 
