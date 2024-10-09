@@ -221,10 +221,11 @@ const dlSVG = '<g><path d="M 8 51 C 5 54 5 48 5 42 L 5 -40 C 5 -45 -5 -45 -5 -40
 
 function createButton(title, className, innerHtml)
 {
-  let dlBtn = document.createElement("button");
-  dlBtn.className = className;
-  dlBtn.innerHTML = innerHtml;
-  dlBtn.title = title;
+    let btn = document.createElement("button");
+    btn.className = className;
+    btn.innerHTML = innerHtml;
+    btn.title = title;
+    return btn;
 }
                
 function createDLButton()
