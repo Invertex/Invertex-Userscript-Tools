@@ -1,3 +1,28 @@
+//Greasemonkey does not have this functionality, so helpful way to check which function to use
+const isGM = (typeof GM_addValueChangeListener === 'undefined');
+
+function StringBuilder(value)
+{
+    this.strings = new Array();
+    this.append(value);
+}
+StringBuilder.prototype.append = function (value)
+{
+    if (value)
+    {
+        this.strings.push(value);
+    }
+}
+StringBuilder.prototype.clear = function ()
+{
+    this.strings.length = 0;
+}
+StringBuilder.prototype.toString = function ()
+{
+    return this.strings.join("");
+}
+
+
 function download(url, filename)
 {
      return new Promise((resolve, reject) =>
@@ -150,4 +175,35 @@ function removeGlobalStyle(id)
     {
         head.removeChild(styleElem);
     }
+}
+
+function getCSSRuleContainingStyle(styleName, selectors, styleCnt = 0, matchingValue = "")
+{
+    let sheets = document.styleSheets;
+    for (let i = 0, l = sheets.length; i < l; i++)
+    {
+        let curSheet = sheets[i];
+
+        if (!curSheet.cssRules) { continue; }
+
+        for (let j = 0, k = curSheet.cssRules.length; j < k; j++)
+        {
+            let rule = curSheet.cssRules[j];
+            if (styleCnt != 0 && styleCnt != rule.style.length) { return null; }
+            if (rule.selectorText && rule.style.length > 0 /* && rule.selectorText.split(',').indexOf(selector) !== -1*/ )
+            {
+                for (let s = 0; s < selectors.length; s++)
+                {
+                    if (rule.selectorText.includes(selectors[s]) && rule.style[0] == styleName)
+                    {
+                        if (matchingValue === "" || matchingValue == rule.style[styleName])
+                        {
+                            return rule;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return null;
 }
