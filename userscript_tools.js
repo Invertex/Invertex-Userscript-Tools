@@ -1,3 +1,9 @@
+const argsChildAndSub = { attributes: false, childList: true, subtree: true };
+const argsChildOnly = { attributes: false, childList: true, subtree: false };
+const argsChildAndAttr = { attributes: true, childList: true, subtree: false };
+const argsAll = { attributes: true, childList: true, subtree: true };
+const argsAttrOnly = { attributes: true, childList: false, subtree: false };
+
 //Greasemonkey does not have this functionality, so helpful way to check which function to use
 const isGM = (typeof GM_addValueChangeListener === 'undefined');
 
