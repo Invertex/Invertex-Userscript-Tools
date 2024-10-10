@@ -45,7 +45,7 @@ function download(url, filename, timeout = -1)
         {
               window.setTimeout(()=> {
                 dl?.abort();
-                reject()
+                reject(null);
             }, timeout);
         }
     });
