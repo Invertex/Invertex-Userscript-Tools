@@ -244,7 +244,7 @@ function createDLButton()
       margin-right: 6px !important;
       margin-left: 8px !important;
     }
-    .vxDlBtn[downloading],.vxDlBtn[disabled] {
+    .vxDlBtn[disabled] {
       pointer-events: none !important;
     }
     .vxDlBtn[downloading] > .vxDlSVG {
