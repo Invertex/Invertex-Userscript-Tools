@@ -234,61 +234,62 @@ function createButton(title, className, innerHtml)
     btn.title = title;
     return btn;
 }
-               
-function createDLButton()
-{ 
-    addGlobalStyle(`
-    .vxDlBtn {
-      background-color: transparent;
-      border: none;
-      margin-right: 6px !important;
-      margin-left: 8px !important;
-    }
-    .vxDlBtn[disabled] {
-      pointer-events: none !important;
-    }
-    .vxDlBtn[downloading] > .vxDlSVG {
-      pointer-events: none !important;
-      background-color: rgba(143, 44, 242, 0.5);
-      border-radius: 12px;
-      animation-iteration-count: infinite;
-      animation-duration: 2s;
-      animation-name: dl-animation;
-    }
-    .vxDlBtn[downloading] > .vxDlSVG > path,.vxDlBtn[disabled] > .vxDlSVG > path {
-        fill: rgba(255,255,255,0.2);
-    }
-    .vxDlSVG:hover {
-      background-color: rgba(143, 44, 242, 0.5);
-      border-radius: 12px;
-    }
-    .vxDlSVG:hover {
-      background-color: rgba(200, 200, 200, 0.25);
-      border-radius: 12px;
-    }
-    .vxDlSVG:focus {
-      padding-top: 3px;
-      padding-bottom: 3px;
-    }
-    @keyframes dl-animation
+
+addGlobalStyle(`
+.vxDlBtn {
+  background-color: transparent;
+  border: none;
+  margin-right: 6px !important;
+  margin-left: 8px !important;
+}
+.vxDlBtn[disabled] {
+  pointer-events: none !important;
+}
+.vxDlBtn[downloading] > .vxDlSVG {
+  pointer-events: none !important;
+  background-color: rgba(143, 44, 242, 0.5);
+  border-radius: 12px;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-name: dl-animation;
+}
+.vxDlBtn[downloading] > .vxDlSVG > path,.vxDlBtn[disabled] > .vxDlSVG > path {
+    fill: rgba(255,255,255,0.2);
+}
+.vxDlSVG:hover {
+  background-color: rgba(143, 44, 242, 0.5);
+  border-radius: 12px;
+}
+.vxDlSVG:hover {
+  background-color: rgba(200, 200, 200, 0.25);
+  border-radius: 12px;
+}
+.vxDlSVG:focus {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+@keyframes dl-animation
+{
+    0%
     {
-        0%
-        {
-            background-color: cyan;
-        }
-        33%
-        {
-            background-color: magenta;
-        }
-        66%
-        {
-            background-color: yellow;
-        }
-        100%
-        {
-            background-color: cyan;
-        }
+        background-color: cyan;
     }
-    `);
+    33%
+    {
+        background-color: magenta;
+    }
+    66%
+    {
+        background-color: yellow;
+    }
+    100%
+    {
+        background-color: cyan;
+    }
+}
+`);
+
+function createDLButton()
+{
   return createButton("Download", "vxDlBtn", dlSVG);
 }
