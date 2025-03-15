@@ -293,3 +293,7 @@ function createDLButton()
 {
   return createButton("Download", "vxDlBtn", dlSVG);
 }
+
+async function sleep(seconds) {
+    return new Promise((resolve) =>setTimeout(resolve, seconds * 1000));
+}
