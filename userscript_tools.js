@@ -7,6 +7,10 @@ const argsAttrOnly = { attributes: true, childList: false, subtree: false };
 //Greasemonkey does not have this functionality, so helpful way to check which function to use
 const isGM = (typeof GM_addValueChangeListener === 'undefined');
 
+async function sleep(seconds) {
+    return new Promise((resolve) =>setTimeout(resolve, seconds * 1000));
+}
+
 function StringBuilder(value)
 {
     this.strings = new Array();
