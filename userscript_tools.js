@@ -239,7 +239,7 @@ function createButton(title, className, innerHtml)
     return btn;
 }
 
-addGlobalStyle(`
+GM_addStyle(`
 .vxDlBtn {
   background-color: transparent;
   border: none;
