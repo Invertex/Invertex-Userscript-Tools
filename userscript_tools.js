@@ -134,7 +134,7 @@ function doOnAttributeChange(elem, onChange, repeatOnce = false)
 
 function addHasAttribute(elem, attr)
 {
-    if (elem.hasAttribute(attr)) { return true; }
+    if (elem == null || elem.hasAttribute(attr)) { return true; }
     elem.setAttribute(attr, "");
     return false;
 }
