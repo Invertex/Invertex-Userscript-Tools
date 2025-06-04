@@ -32,27 +32,29 @@ StringBuilder.prototype.toString = function ()
     return this.strings.join("");
 }
 
-
-function download(url, filename, timeout = -1)
+if(typeof GM_download !== 'undefined')
 {
-     return new Promise((resolve, reject) =>
+    function download(url, filename, timeout = -1)
     {
-         const dl = GM_download(
-             {
-                 name: filename,
-                 url: url,
-                 onload: resolve,
-                 onerror: reject,
-                 ontimeout: reject
-             });
-        if(timeout >= 0)
+         return new Promise((resolve, reject) =>
         {
-              window.setTimeout(()=> {
-                dl?.abort();
-                reject(null);
-            }, timeout);
-        }
-    });
+             const dl = GM_download(
+                 {
+                     name: filename,
+                     url: url,
+                     onload: resolve,
+                     onerror: reject,
+                     ontimeout: reject
+                 });
+            if(timeout >= 0)
+            {
+                  window.setTimeout(()=> {
+                    dl?.abort();
+                    reject(null);
+                }, timeout);
+            }
+        });
+    }
 }
 
 function watchForChange(root, obsArguments, onChange)
@@ -239,7 +241,7 @@ function createButton(title, className, innerHtml)
     return btn;
 }
 
-GM_addStyle(`
+addGlobalStyle(`
 .vxDlBtn {
   background-color: transparent;
   border: none;
@@ -290,8 +292,7 @@ GM_addStyle(`
     {
         background-color: cyan;
     }
-}
-`);
+}`, "ivx_dlbtnstyle");
 
 function createDLButton()
 {
