@@ -108,7 +108,7 @@ function findElem(rootElem, query, observer, resolve)
     return elem;
 }
 
-async function awaitElem(root, query, obsArguments)
+async function awaitElem(root, query, obsArguments = {childList: true, subtree: true, attributes: false})
 {
     return new Promise((resolve, reject) =>
     {
