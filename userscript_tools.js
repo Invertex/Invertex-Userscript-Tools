@@ -240,59 +240,61 @@ function createButton(title, className, innerHtml)
     btn.title = title;
     return btn;
 }
-
-addGlobalStyle(`
-.vxDlBtn {
-  background-color: transparent;
-  border: none;
-  margin-right: 6px !important;
-  margin-left: 8px !important;
-}
-.vxDlBtn[disabled] {
-  pointer-events: none !important;
-}
-.vxDlBtn[downloading] > .vxDlSVG {
-  pointer-events: none !important;
-  background-color: rgba(143, 44, 242, 0.5);
-  border-radius: 12px;
-  animation-iteration-count: infinite;
-  animation-duration: 2s;
-  animation-name: dl-animation;
-}
-.vxDlBtn[downloading] > .vxDlSVG > path,.vxDlBtn[disabled] > .vxDlSVG > path {
-    fill: rgba(255,255,255,0.2);
-}
-.vxDlSVG:hover {
-  background-color: rgba(143, 44, 242, 0.5);
-  border-radius: 12px;
-}
-.vxDlSVG:hover {
-  background-color: rgba(200, 200, 200, 0.25);
-  border-radius: 12px;
-}
-.vxDlSVG:focus {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-@keyframes dl-animation
+if(typeof GM_addStyle !== 'undefined')
 {
-    0%
-    {
-        background-color: cyan;
+    GM_addStyle(`
+    .vxDlBtn {
+      background-color: transparent;
+      border: none;
+      margin-right: 6px !important;
+      margin-left: 8px !important;
     }
-    33%
-    {
-        background-color: magenta;
+    .vxDlBtn[disabled] {
+      pointer-events: none !important;
     }
-    66%
-    {
-        background-color: yellow;
+    .vxDlBtn[downloading] > .vxDlSVG {
+      pointer-events: none !important;
+      background-color: rgba(143, 44, 242, 0.5);
+      border-radius: 12px;
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      animation-name: dl-animation;
     }
-    100%
-    {
-        background-color: cyan;
+    .vxDlBtn[downloading] > .vxDlSVG > path,.vxDlBtn[disabled] > .vxDlSVG > path {
+        fill: rgba(255,255,255,0.2);
     }
-}`, "ivx_dlbtnstyle");
+    .vxDlSVG:hover {
+      background-color: rgba(143, 44, 242, 0.5);
+      border-radius: 12px;
+    }
+    .vxDlSVG:hover {
+      background-color: rgba(200, 200, 200, 0.25);
+      border-radius: 12px;
+    }
+    .vxDlSVG:focus {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+    @keyframes dl-animation
+    {
+        0%
+        {
+            background-color: cyan;
+        }
+        33%
+        {
+            background-color: magenta;
+        }
+        66%
+        {
+            background-color: yellow;
+        }
+        100%
+        {
+            background-color: cyan;
+        }
+    }`);
+}
 
 function createDLButton()
 {
